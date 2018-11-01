@@ -12,6 +12,6 @@ public class Mountains extends Place{
 
     public String toString()
     {
-        return "M";
+        return "[M] ";
     }
 }

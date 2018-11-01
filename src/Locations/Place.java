@@ -11,4 +11,8 @@ public class Place {
         xLoc = x;
         yLoc = y;
     }
+    public String toString()
+    {
+        return "[ ] ";
+    }
 }

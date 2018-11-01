@@ -12,6 +12,6 @@ public class Forest extends Place{
 
     public String toString()
     {
-        return "F";
+        return "[F] ";
     }
 }
