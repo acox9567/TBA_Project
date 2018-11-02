@@ -18,43 +18,46 @@ public class Runner
         int size = 0;
         boolean selDif = false;
         Scanner in = new Scanner(System.in);
+
+        Board board = new Board(10,10);
+
         while(!selDif) {
-            System.out.println("Small, medium, or large");
+            System.out.println("Do you want a 'small', 'medium', or 'large' sized board?");
             String input = in.nextLine();
             if (input.equalsIgnoreCase("small")) {
-                size = 5;
                 selDif = true;
             } else if (input.equalsIgnoreCase("medium")) {
-                size = 10;
+                board = new Board(15,15);
                 selDif = true;
             } else if (input.equalsIgnoreCase("large")) {
-                size = 15;
+                board = new Board(20,20);
                 selDif = true;
             }
         }
 
-        Place[][] map = new Place[size][size];
+        generateMap(board);
 
-        for (int x = 0; x < map.length; x++)
+        System.out.println(board);
+
+        while(gameOn)
         {
-            for (int y = 0; y < map[x].length; y++)
-            {
-                map[x][y] = new Place(x,y);
-            }
+            String input = in.nextLine();
+            getResponse(input);
         }
 
-        generateMap(map);
-
-        displayMap(map);
+        System.out.println(board);
     }
-    public static void generateMap(Place[][] map)
+
+    public static void generateMap(Board board)
     {
         int area = 0;
 
-        for (int x = 0; x < map.length; x++)
+        for (int x = 0; x < board.map.length; x++)
         {
-            for (int y = 0; y < map[x].length; y++)
+            for (int y = 0; y < board.map[x].length; y++)
             {
+                Place place = new Place(x, y);
+                board.addPlace(place, x, y);
                 area++;
             }
         }
@@ -64,9 +67,9 @@ public class Runner
 
         for (int i = 0; i < numMountains; i++)
         {
-            int x = (int) (Math.random() * map.length);
-            int y = (int) (Math.random() * map.length);
-            map[x][y] = new Mountains(x, y);
+            int x = (int) (Math.random() * board.map.length);
+            int y = (int) (Math.random() * board.map.length);
+            board.map[x][y] = new Mountains(x, y);
         }
 
         //Creates a random number of forests to take up between 0% and 50% of the map
@@ -74,18 +77,14 @@ public class Runner
 
         for (int i = 0; i < numForests; i++)
         {
-            int x = (int) (Math.random() * map.length);
-            int y = (int) (Math.random() * map.length);
-            map[x][y] = new Forest(x, y);
+            int x = (int) (Math.random() * board.map.length);
+            int y = (int) (Math.random() * board.map.length);
+            board.map[x][y] = new Forest(x, y);
         }
     }
-    public static void displayMap(Place[][] map)
+
+    public static void getResponse(String input)
     {
-        for (int i = 0; i < map.length; i++)
-        {
-            for (int j = 0; j < map[i].length; j++)
-                System.out.print(map[i][j]);
-            System.out.print("\n");
-        }
+
     }
 }
