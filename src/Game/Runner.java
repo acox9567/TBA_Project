@@ -3,10 +3,6 @@
 
 package Game;
 
-import Locations.Forest;
-import Locations.Mountains;
-import Locations.Place;
-
 import java.util.Scanner;
 
 public class Runner
@@ -35,7 +31,7 @@ public class Runner
             }
         }
 
-        generateMap(board);
+        board.generateMap();
 
         System.out.println(board);
 
@@ -46,41 +42,6 @@ public class Runner
         }
 
         System.out.println(board);
-    }
-
-    public static void generateMap(Board board)
-    {
-        int area = 0;
-
-        for (int x = 0; x < board.map.length; x++)
-        {
-            for (int y = 0; y < board.map[x].length; y++)
-            {
-                Place place = new Place(x, y);
-                board.addPlace(place, x, y);
-                area++;
-            }
-        }
-
-        //Creates a random number of mountains to take up between 0% and 50% of the map
-        int numMountains = (int)(Math.random() * area) / 2;
-
-        for (int i = 0; i < numMountains; i++)
-        {
-            int x = (int) (Math.random() * board.map.length);
-            int y = (int) (Math.random() * board.map.length);
-            board.map[x][y] = new Mountains(x, y);
-        }
-
-        //Creates a random number of forests to take up between 0% and 50% of the map
-        int numForests = (int)(Math.random() * area) / 2;
-
-        for (int i = 0; i < numForests; i++)
-        {
-            int x = (int) (Math.random() * board.map.length);
-            int y = (int) (Math.random() * board.map.length);
-            board.map[x][y] = new Forest(x, y);
-        }
     }
 
     public static void getResponse(String input)

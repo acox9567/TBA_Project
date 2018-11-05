@@ -3,9 +3,9 @@
 
 package Locations;
 
-public class Mountains extends Place{
+public class Mountain extends Place{
 
-    public Mountains (int x, int y)
+    public Mountain(int x, int y)
     {
         super(x, y);
     }
