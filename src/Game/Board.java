@@ -10,7 +10,7 @@ import Locations.Place;
 
 public class Board
 {
-    Place[][] map;
+    public Place[][] map;
 
     public Board(Place[][] map)
     {
@@ -33,10 +33,20 @@ public class Board
         for (int x = 0; x < this.map.length; x++)
         {
             for (int y = 0; y < this.map.length; y++)
-                str += this.map[x][y];
+            {
+                if (this.map[x][y].seen == true)
+                    str += this.map[x][y];
+                else
+                    str += "    ";
+            }
             str += "\n";
         }
         return str;
+    }
+
+    public int getLength()
+    {
+        return this.map.length;
     }
 
     public void generateMap()
@@ -71,17 +81,17 @@ public class Board
 
                 if (ran <= mProb)
                 {
-                    Mountain mountain = new Mountain(x, y);
+                    Mountain mountain = new Mountain(false, x, y);
                     this.addPlace(mountain, x, y);
                 }
                 else if (ran <= fProb + mProb)
                 {
-                    Forest forest = new Forest(x, y);
+                    Forest forest = new Forest(false, x, y);
                     this.addPlace(forest, x, y);
                 }
                 else if (ran <= dProb + fProb + mProb)
                 {
-                    Desert desert = new Desert(x, y);
+                    Desert desert = new Desert(false, x, y);
                     this.addPlace(desert, x, y);
                 }
             }

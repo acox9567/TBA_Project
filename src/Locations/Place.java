@@ -3,14 +3,20 @@
 
 package Locations;
 
-public class Place {
-    int xLoc, yLoc;
+import People.Player;
 
-    public Place (int x, int y)
+public class Place {
+
+    public boolean seen;
+    private int xLoc, yLoc;
+
+    public Place (boolean seen, int xLoc, int yLoc)
     {
-        xLoc = x;
-        yLoc = y;
+        this.seen = seen;
+        this.xLoc = xLoc;
+        this.yLoc = yLoc;
     }
+
     public String toString()
     {
         return "[ ] ";

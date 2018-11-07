@@ -5,9 +5,9 @@ package Locations;
 
 public class Desert extends Place{
 
-    public Desert (int x, int y)
+    public Desert (boolean wasHere, int xLoc, int yLoc)
     {
-        super(x, y);
+        super(wasHere, xLoc, yLoc);
     }
 
     public String toString()

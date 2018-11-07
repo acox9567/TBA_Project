@@ -5,9 +5,9 @@ package Locations;
 
 public class Forest extends Place{
 
-    public Forest (int x, int y)
+    public Forest (boolean wasHere, int xLoc, int yLoc)
     {
-        super(x, y);
+        super(wasHere, xLoc, yLoc);
     }
 
     public String toString()

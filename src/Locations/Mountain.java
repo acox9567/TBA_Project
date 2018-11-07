@@ -5,9 +5,9 @@ package Locations;
 
 public class Mountain extends Place{
 
-    public Mountain(int x, int y)
+    public Mountain(boolean wasHere, int xLoc, int yLoc)
     {
-        super(x, y);
+        super(wasHere, xLoc, yLoc);
     }
 
     public String toString()

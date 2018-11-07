@@ -3,6 +3,8 @@
 
 package Game;
 
+import People.Player;
+
 import java.util.Scanner;
 
 public class Runner
@@ -11,7 +13,6 @@ public class Runner
 
     public static void main(String[] args)
     {
-        int size = 0;
         boolean selDif = false;
         Scanner in = new Scanner(System.in);
 
@@ -33,15 +34,51 @@ public class Runner
 
         board.generateMap();
 
+        System.out.println("What is your name?");
+        String input = in.nextLine();
+        String name = input;
+
+        Player player = new Player((board.getLength()/2),(board.getLength()/2), name);
+
+        System.out.print(player.name);
+
+        updateFog(board, player);
+
         System.out.println(board);
 
         while(gameOn)
         {
-            String input = in.nextLine();
+            input = in.nextLine();
             getResponse(input);
         }
 
         System.out.println(board);
+    }
+
+    public static void updateFog(Board board, Player player)
+    {
+        for (int x = 0; x < board.map.length; x++)
+        {
+            for (int y = 0; y < board.map.length; y++)
+            {
+                if (player.xLoc != 0 && player.yLoc != 0)
+                    board.map[player.xLoc - 1][player.yLoc - 1].seen = true;
+                if (x != 0)
+                    board.map[player.xLoc - 1][player.yLoc].seen = true;
+                if (x != 0 && y != board.map.length - 1)
+                    board.map[player.xLoc - 1][player.yLoc + 1].seen = true;
+                if (y != 0)
+                    board.map[player.xLoc][player.yLoc - 1].seen = true;
+                if (x != 0 && y != board.map.length - 1)
+                    board.map[player.xLoc][player.yLoc + 1].seen = true;
+                if (x != board.map.length - 1 && y != 0)
+                    board.map[player.xLoc + 1][player.yLoc - 1].seen = true;
+                if (x != board.map.length - 1)
+                    board.map[player.xLoc + 1][player.yLoc].seen = true;
+                if (x != board.map.length - 1 && y != board.map.length - 1)
+                    board.map[player.xLoc + 1][player.yLoc + 1].seen = true;
+            }
+        }
     }
 
     public static void getResponse(String input)
