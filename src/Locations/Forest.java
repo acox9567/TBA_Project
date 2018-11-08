@@ -5,13 +5,29 @@ package Locations;
 
 public class Forest extends Place{
 
-    public Forest (boolean wasHere, int xLoc, int yLoc)
+    boolean seen;
+    String type;
+    private boolean isHere, wasHere;
+
+    public Forest()
     {
-        super(wasHere, xLoc, yLoc);
+        this.seen = false;
+        this.type = "forest";
+        isHere = false;
+        wasHere = false;
+    }
+
+    public void getEvent()
+    {
+        System.out.println("Something happens.");
     }
 
     public String toString()
     {
+        if (isHere)
+            return "[ ] ";
+        if (wasHere)
+            return "[f]";
         return "[F] ";
     }
 }

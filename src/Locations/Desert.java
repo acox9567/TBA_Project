@@ -5,13 +5,29 @@ package Locations;
 
 public class Desert extends Place{
 
-    public Desert (boolean wasHere, int xLoc, int yLoc)
+    boolean seen;
+    String type;
+    private boolean isHere, wasHere;
+
+    public Desert()
     {
-        super(wasHere, xLoc, yLoc);
+        this.seen = false;
+        this.type = "desert";
+        isHere = false;
+        wasHere = false;
+    }
+
+    public void getEvent()
+    {
+        System.out.println("Something happens.");
     }
 
     public String toString()
     {
+        if (isHere)
+            return "[ ] ";
+        if (wasHere)
+            return "[d]";
         return "[D] ";
     }
 }

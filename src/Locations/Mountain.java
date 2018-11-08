@@ -5,13 +5,29 @@ package Locations;
 
 public class Mountain extends Place{
 
-    public Mountain(boolean wasHere, int xLoc, int yLoc)
+    boolean seen;
+    String type;
+    private boolean isHere, wasHere;
+
+    public Mountain()
     {
-        super(wasHere, xLoc, yLoc);
+        this.seen = false;
+        this.type = "mountain";
+        isHere = false;
+        wasHere = false;
+    }
+
+    public void getEvent()
+    {
+        System.out.println("Something happens.");
     }
 
     public String toString()
     {
+        if (isHere)
+            return "[ ] ";
+        if (wasHere)
+            return "[m]";
         return "[M] ";
     }
 }

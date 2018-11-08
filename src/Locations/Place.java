@@ -3,22 +3,14 @@
 
 package Locations;
 
-import People.Player;
+public abstract class Place {
 
-public class Place {
-
+    public boolean isHere;
+    public boolean wasHere;
     public boolean seen;
-    private int xLoc, yLoc;
+    public String type;
 
-    public Place (boolean seen, int xLoc, int yLoc)
-    {
-        this.seen = seen;
-        this.xLoc = xLoc;
-        this.yLoc = yLoc;
-    }
+    public abstract void getEvent();
 
-    public String toString()
-    {
-        return "[ ] ";
-    }
+    public abstract String toString();
 }

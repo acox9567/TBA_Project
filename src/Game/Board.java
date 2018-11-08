@@ -34,7 +34,7 @@ public class Board
         {
             for (int y = 0; y < this.map.length; y++)
             {
-                if (this.map[x][y].seen == true)
+                if (this.map[x][y].seen)
                     str += this.map[x][y];
                 else
                     str += "    ";
@@ -42,11 +42,6 @@ public class Board
             str += "\n";
         }
         return str;
-    }
-
-    public int getLength()
-    {
-        return this.map.length;
     }
 
     public void generateMap()
@@ -59,39 +54,39 @@ public class Board
         {
             for (int y = 0; y < this.map[x].length; y++)
             {
-                if (x >= 1 && this.map[x - 1][y].equals("[M] "))
-                    mProb += 100;
+                if (x >= 1 && this.map[x - 1][y].type.equals("mountain"))
+                    mProb += 5;
 
-                else if (x >= 1 && this.map[x - 1][y].equals("[F] "))
+                else if (x >= 1 && this.map[x - 1][y].type.equals("forest"))
                     fProb += 5;
 
-                else if (x >= 1 && this.map[x - 1][y].equals("[D] "))
+                else if (x >= 1 && this.map[x - 1][y].type.equals("desert"))
                     dProb += 5;
 
-                if (y >= 1 && this.map[x][y - 1].equals("[M] "))
-                    mProb += 100;
+                if (y >= 1 && this.map[x][y - 1].type.equals("mountain"))
+                    mProb += 5;
 
-                else if (y >= 1 && this.map[x][y - 1].equals("[F] "))
+                else if (y >= 1 && this.map[x][y - 1].type.equals("forest"))
                     fProb += 5;
 
-                else if (y >= 1 && this.map[x][y - 1].equals("[D] "))
+                else if (y >= 1 && this.map[x][y - 1].type.equals("desert"))
                     dProb += 5;
 
                 double ran = Math.random() * (mProb + fProb + dProb);
 
                 if (ran <= mProb)
                 {
-                    Mountain mountain = new Mountain(false, x, y);
+                    Mountain mountain = new Mountain();
                     this.addPlace(mountain, x, y);
                 }
                 else if (ran <= fProb + mProb)
                 {
-                    Forest forest = new Forest(false, x, y);
+                    Forest forest = new Forest();
                     this.addPlace(forest, x, y);
                 }
-                else if (ran <= dProb + fProb + mProb)
+                else
                 {
-                    Desert desert = new Desert(false, x, y);
+                    Desert desert = new Desert();
                     this.addPlace(desert, x, y);
                 }
             }
