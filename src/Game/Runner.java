@@ -111,7 +111,9 @@ public class Runner
         System.out.println("The map printed above represents different places with each letter representing a different type of area.");
         System.out.println("    [M] - mountain");
         System.out.println("    [D] - desert");
-        System.out.println("    [F] - forest\n");
+        System.out.println("    [F] - forest");
+		System.out.println("    [W] - water");
+		System.out.println("    [C] - city\n");
 
         System.out.println("If the letter is lowercase; it signifies that you have already explored that area.\n");
         System.out.println("Movement is controlled by typing in a compass direction to move in the corresponding direction on the map.");

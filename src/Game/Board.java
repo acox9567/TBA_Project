@@ -3,10 +3,7 @@
 
 package Game;
 
-import Locations.Desert;
-import Locations.Forest;
-import Locations.Mountain;
-import Locations.Place;
+import Locations.*;
 
 public class Board
 {
@@ -46,33 +43,41 @@ public class Board
 
     public void generateMap()
     {
-        double mProb = .25;
-        double fProb = .25;
-        double dProb = .25;
+        double mProb = .2;
+        double fProb = .2;
+        double dProb = .2;
+        double cProb = .2;
+        double wProb = .2;
 
         for (int x = 0; x < this.map.length; x++)
         {
             for (int y = 0; y < this.map[x].length; y++)
             {
                 if (x >= 1 && this.map[x - 1][y].type.equals("mountain"))
-                    mProb += 5;
+                    mProb += .2;
 
                 else if (x >= 1 && this.map[x - 1][y].type.equals("forest"))
-                    fProb += 5;
+                    fProb += .2;
 
                 else if (x >= 1 && this.map[x - 1][y].type.equals("desert"))
-                    dProb += 5;
+                    dProb += .2;
+
+                else if (x >= 1 && this.map[x - 1][y].type.equals("water"))
+                    wProb += .2;
 
                 if (y >= 1 && this.map[x][y - 1].type.equals("mountain"))
-                    mProb += 5;
+                    mProb += .2;
 
                 else if (y >= 1 && this.map[x][y - 1].type.equals("forest"))
-                    fProb += 5;
+                    fProb += .2;
 
                 else if (y >= 1 && this.map[x][y - 1].type.equals("desert"))
-                    dProb += 5;
+                    dProb += .2;
 
-                double ran = Math.random() * (mProb + fProb + dProb);
+                else if (x >= 1 && this.map[x - 1][y].type.equals("water"))
+                    wProb += .2;
+
+                double ran = Math.random() * (mProb + fProb + dProb + wProb + cProb);
 
                 if (ran <= mProb)
                 {
@@ -84,10 +89,19 @@ public class Board
                     Forest forest = new Forest();
                     this.addPlace(forest, x, y);
                 }
-                else
+                else if (ran <= dProb + fProb + mProb)
                 {
                     Desert desert = new Desert();
                     this.addPlace(desert, x, y);
+                }
+                else if (ran <= wProb + dProb + fProb + mProb)
+                {
+                    Water water = new Water();
+                    this.addPlace(water, x, y);
+                }
+                else                {
+                    City city = new City();
+                    this.addPlace(city, x, y);
                 }
             }
         }

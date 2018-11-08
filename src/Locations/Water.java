@@ -1,14 +1,11 @@
-//Alexander Cox
-//Tuesday, October 30, 2018
-
 package Locations;
 
-public class Forest extends Place{
+public class Water extends Place{
 
-    public Forest()
+    public Water()
     {
         this.seen = false;
-        this.type = "forest";
+        this.type = "water";
         isHere = false;
         wasHere = false;
         event = (int)(Math.random() * 5);
@@ -33,13 +30,13 @@ public class Forest extends Place{
         if (isHere)
             return "[ ] ";
         if (wasHere)
-            return "[f] ";
-        return "[F] ";
+            return "[w] ";
+        return "[W] ";
     }
 
     private void event0()
     {
-        System.out.println("Upon the forest floor lie trees of yesteryear, fallen in storms long forgotten. The seasons have been harsh, stripping away the bark and outer layers, yet rendering them all the more beautiful. They have the appearance of driftwood, twisting in patterns that remind you of seaside waves; even the colour of the moss is kelp-like. They are soft, damp, yet your fingers come away dry. You tilt your head upward, the pines are several houses tall, reaching toward the golden rays of spring. Birdsong comes in lulls and bursts, the silence and the singing working together as well as any improvised melody.");
+        System.out.println("event0");
     }
 
     private void event1()

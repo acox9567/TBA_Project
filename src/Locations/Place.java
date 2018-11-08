@@ -9,6 +9,7 @@ public abstract class Place {
     public boolean wasHere;
     public boolean seen;
     public String type;
+    int event;
 
     public abstract void getEvent();
 
