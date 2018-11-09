@@ -5,6 +5,8 @@ package People;
 
 public class Person {
 
+    public String name;
+    public int cp;
     public int xLoc, yLoc;
 
     public Person(int xLoc, int yLoc)

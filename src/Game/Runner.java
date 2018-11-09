@@ -115,12 +115,16 @@ public class Runner
 		System.out.println("    [W] - water");
 		System.out.println("    [C] - city\n");
 
+		System.out.println("Upon entering a new tile an event will occur with varying results.");
+
         System.out.println("If the letter is lowercase; it signifies that you have already explored that area.\n");
         System.out.println("Movement is controlled by typing in a compass direction to move in the corresponding direction on the map.");
         System.out.println("This is not case sensitive and for short hand you may also type in simply the first letter of the direction.");
         System.out.println("    North - moves the location of you character one tile north");
         System.out.println("    South - moves the location of you character one tile south");
         System.out.println("    East - moves the location of you character one tile east");
-        System.out.println("    West - moves the location of you character one tile west");
+        System.out.println("    West - moves the location of you character one tile west\n");
+
+        System.out.println("To see information on your character enter \"char info\"");
     }
 }
