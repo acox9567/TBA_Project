@@ -52,35 +52,35 @@ public class Forest extends Place{
 
         if (input.equalsIgnoreCase("yes 1")) {
             player.inventory[0] = weapon;
-            System.out.println("You picked up the spear and put in slot 1.");
+            System.out.println("You picked up the " + weapon.name + " and put in slot 1.");
         }
         if (input.equalsIgnoreCase("yes 2")) {
             player.inventory[1] = weapon;
-            System.out.println("You picked up the spear and put in slot 2.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 2.");
         }
         if (input.equalsIgnoreCase("yes 3")) {
             player.inventory[2] = weapon;
-            System.out.println("You picked up the spear and put in slot 3.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 3.");
         }
         if (input.equalsIgnoreCase("yes 4")) {
             player.inventory[3] = weapon;
-            System.out.println("You picked up the spear and put in slot 4.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 4.");
         }
         if (input.equalsIgnoreCase("yes 5")) {
             player.inventory[4] = weapon;
-            System.out.println("You picked up the spear and put in slot 5.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 5.");
         }
         if (input.equalsIgnoreCase("yes 6")) {
             player.inventory[5] = weapon;
-            System.out.println("You picked up the spear and put in slot 6.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 6.");
         }
         if (input.equalsIgnoreCase("yes 7")) {
             player.inventory[6] = weapon;
-            System.out.println("You picked up the spear and put in slot 7.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 7.");
         }
         if (input.equalsIgnoreCase("yes 8")) {
             player.inventory[7] = weapon;
-            System.out.println("You picked up the spear and put in slot 8.");
+            System.out.println("You picked up the " + weapon.name + " spear and put in slot 8.");
         }
     }
 
@@ -97,6 +97,10 @@ public class Forest extends Place{
         boolean inCombat = true;
         while (inCombat)
         {
+            if (player.health == 0) {
+                System.out.print("You have been killed. Game Over");
+                break;
+            }
             System.out.println("Would you like to \"fight\" or \"run\"?");
             String input = in.nextLine();
             if(input.equalsIgnoreCase("fight"))
@@ -150,6 +154,10 @@ public class Forest extends Place{
         boolean inCombat = true;
         while (inCombat)
         {
+            if (player.health == 0) {
+                System.out.print("You have been killed. Game Over");
+                break;
+            }
             System.out.println("Would you like to \"fight\" or \"run\"?");
             String input = in.nextLine();
             if(input.equalsIgnoreCase("fight"))

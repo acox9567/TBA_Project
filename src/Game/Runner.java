@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Runner
 {
-	private static boolean gameOn = true;
+	public static boolean gameOn = true;
 
 	public static void main(String[] args)
 	{
@@ -39,7 +39,7 @@ public class Runner
 
 		Player player = new Player((board.map.length/2),(board.map.length/2), name);
 
-		System.out.print(player.name);
+		System.out.print("Enter \"help\" to see instructions and help on how to play");
 
 		updateFog(board, player);
 
@@ -77,67 +77,91 @@ public class Runner
 
 	private static void getResponse(String input, Player player, Board board)
 	{
-        boolean helpBool = false;
-
-	    board.map[player.xLoc][player.yLoc].wasHere = true;
+		board.map[player.xLoc][player.yLoc].wasHere = true;
 	    board.map[player.xLoc][player.yLoc].isHere = false;
 
 	    if (input.equalsIgnoreCase("help")) {
             help();
-            helpBool = true;
         }
         if (input.equalsIgnoreCase("Char info")) {
 			System.out.println(player);
-			helpBool = true;
 		}
 
-		if (input.equalsIgnoreCase("drop 1"))
+		if (input.equalsIgnoreCase("drop 1")) {
 			player.inventory[0] = null;
-		if (input.equalsIgnoreCase("drop 2"))
+		}
+		if (input.equalsIgnoreCase("drop 2")) {
 			player.inventory[1] = null;
-		if (input.equalsIgnoreCase("drop 3"))
+		}
+		if (input.equalsIgnoreCase("drop 3")) {
 			player.inventory[2] = null;
-		if (input.equalsIgnoreCase("drop 4"))
+		}
+		if (input.equalsIgnoreCase("drop 4")) {
 			player.inventory[3] = null;
-		if (input.equalsIgnoreCase("drop 5"))
+		}
+		if (input.equalsIgnoreCase("drop 5")) {
 			player.inventory[4] = null;
-		if (input.equalsIgnoreCase("drop 6"))
+		}
+		if (input.equalsIgnoreCase("drop 6")) {
 			player.inventory[5] = null;
-		if (input.equalsIgnoreCase("drop 7"))
+		}
+		if (input.equalsIgnoreCase("drop 7")) {
 			player.inventory[6] = null;
-		if (input.equalsIgnoreCase("drop 8"))
+		}
+		if (input.equalsIgnoreCase("drop 8")) {
 			player.inventory[7] = null;
+		}
 
-		if (player.inventory[0] != null && input.equalsIgnoreCase("use 1"))
+		if (player.inventory[0] != null && input.equalsIgnoreCase("use 1")) {
 			player.inventory[0].use();
-		if (player.inventory[1] != null && input.equalsIgnoreCase("use 2"))
-			player.inventory[1].use();
-		if (player.inventory[2] != null && input.equalsIgnoreCase("use 3"))
-			player.inventory[2].use();
-		if (player.inventory[3] != null && input.equalsIgnoreCase("use 4"))
-			player.inventory[3].use();
-		if (player.inventory[4] != null && input.equalsIgnoreCase("use 5"))
-			player.inventory[4].use();
-		if (player.inventory[5] != null && input.equalsIgnoreCase("use 6"))
-			player.inventory[5].use();
-		if (player.inventory[6] != null && input.equalsIgnoreCase("use 7"))
-			player.inventory[6].use();
-		if (player.inventory[7] != null && input.equalsIgnoreCase("use 8"))
-			player.inventory[7].use();
+		}
+		if (player.inventory[1] != null && input.equalsIgnoreCase("use 2")) {
+			player.inventory[1] = null;
+		}
+		if (player.inventory[2] != null && input.equalsIgnoreCase("use 3")) {
+			player.inventory[2] = null;
+		}
+		if (player.inventory[3] != null && input.equalsIgnoreCase("use 4")) {
+			player.inventory[3] = null;
+		}
+		if (player.inventory[4] != null && input.equalsIgnoreCase("use 5")) {
+			player.inventory[4] = null;
+		}
+		if (player.inventory[5] != null && input.equalsIgnoreCase("use 6")) {
+			player.inventory[5] = null;
+		}
+		if (player.inventory[6] != null && input.equalsIgnoreCase("use 7")) {
+			player.inventory[6] = null;
+		}
+		if (player.inventory[7] != null && input.equalsIgnoreCase("use 8")) {
+			player.inventory[7] = null;
+		}
 
-        if (input.equalsIgnoreCase("north") || input.equalsIgnoreCase("n"))
-            player.xLoc -= 1;
-        if (input.equalsIgnoreCase("south") || input.equalsIgnoreCase("s"))
-            player.xLoc += 1;
-        if (input.equalsIgnoreCase("east") || input.equalsIgnoreCase("e"))
-            player.yLoc += 1;
-        if (input.equalsIgnoreCase("west") || input.equalsIgnoreCase("w"))
-            player.yLoc -= 1;
-
-        board.map[player.xLoc][player.yLoc].isHere = true;
-        updateFog(board, player);
-
-        if (!helpBool) {
+        if (player.xLoc != 0 && input.equalsIgnoreCase("north") || input.equalsIgnoreCase("n")) {
+			player.xLoc -= 1;
+			board.map[player.xLoc][player.yLoc].isHere = true;
+			updateFog(board, player);
+			System.out.println(board);
+			board.map[player.xLoc][player.yLoc].getEvent(player);
+		}
+        if (player.xLoc != board.map.length && input.equalsIgnoreCase("south") || input.equalsIgnoreCase("s")) {
+			player.xLoc += 1;
+			board.map[player.xLoc][player.yLoc].isHere = true;
+			updateFog(board, player);
+			System.out.println(board);
+			board.map[player.xLoc][player.yLoc].getEvent(player);
+		}
+		if (player.xLoc != board.map.length && input.equalsIgnoreCase("east") || input.equalsIgnoreCase("e")) {
+			player.yLoc += 1;
+			board.map[player.xLoc][player.yLoc].isHere = true;
+			updateFog(board, player);
+			System.out.println(board);
+			board.map[player.xLoc][player.yLoc].getEvent(player);
+		}
+		if (player.yLoc != 0 && input.equalsIgnoreCase("west") || input.equalsIgnoreCase("w")) {
+			player.yLoc -= 1;
+			board.map[player.xLoc][player.yLoc].isHere = true;
+			updateFog(board, player);
 			System.out.println(board);
 			board.map[player.xLoc][player.yLoc].getEvent(player);
 		}

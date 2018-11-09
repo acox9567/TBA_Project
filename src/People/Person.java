@@ -7,5 +7,4 @@ public class Person {
 
     public String name;
     public static int level;
-    public int speed;
 }
