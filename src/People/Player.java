@@ -3,24 +3,53 @@
 
 package People;
 
-import Items.Weapon;
+import Items.Item;
 
 public class Player extends Person {
 
-    public Weapon[] inventory;
+    public static Item[] inventory;
+    public int xLoc, yLoc, health;
 
     public Player(int xLoc, int yLoc, String name)
     {
-        super(xLoc,yLoc);
+        this.xLoc = xLoc;
+        this.yLoc = yLoc;
         this.name = name;
-        cp = 0;
-        inventory = new Weapon[8];
+        level = 1;
+        health = level * 10;
+        inventory = new Item[8];
     }
 
     public static int getCP()
     {
         int cp = 0;
+        for (int i = 0; i < inventory.length; i++)
+        {
+            if (inventory[i] != null && inventory[i].equipped)
+                cp += inventory[i].cpBonus;
+        }
+        cp += level;
+        return cp;
+    }
 
-        return
+    public String toString()
+    {
+        String str = "";
+
+        str += "NAME: " + this.name + "\n";
+        str += "LEVEL: " + this.level + "\n";
+        str += "HEALTH: " + this.health + "\n";
+        str += "INVENTORY: \n";
+
+        for (int i = 0; i < inventory.length; i++)
+        {
+            if (inventory[i] == null)
+                str += "    [" + (i + 1) + "] Empty\n";
+            else if(inventory[i].equipped)
+                str += "    [" + (i + 1) +"] " + inventory[i].name + " - " + inventory[i].description + "(equipped)\n";
+            else
+                str += "    [" + (i + 1) +"] " + inventory[i].name + " - " + inventory[i].description + "\n";
+        }
+        return str;
     }
 }

@@ -47,7 +47,6 @@ public class Board
         double fProb = .2;
         double dProb = .2;
         double cProb = .2;
-        double wProb = .2;
 
         for (int x = 0; x < this.map.length; x++)
         {
@@ -62,9 +61,6 @@ public class Board
                 else if (x >= 1 && this.map[x - 1][y].type.equals("desert"))
                     dProb += .2;
 
-                else if (x >= 1 && this.map[x - 1][y].type.equals("water"))
-                    wProb += .2;
-
                 if (y >= 1 && this.map[x][y - 1].type.equals("mountain"))
                     mProb += .2;
 
@@ -74,10 +70,7 @@ public class Board
                 else if (y >= 1 && this.map[x][y - 1].type.equals("desert"))
                     dProb += .2;
 
-                else if (x >= 1 && this.map[x - 1][y].type.equals("water"))
-                    wProb += .2;
-
-                double ran = Math.random() * (mProb + fProb + dProb + wProb + cProb);
+                double ran = Math.random() * (mProb + fProb + dProb + cProb);
 
                 if (ran <= mProb)
                 {
@@ -93,11 +86,6 @@ public class Board
                 {
                     Desert desert = new Desert();
                     this.addPlace(desert, x, y);
-                }
-                else if (ran <= wProb + dProb + fProb + mProb)
-                {
-                    Water water = new Water();
-                    this.addPlace(water, x, y);
                 }
                 else                {
                     City city = new City();

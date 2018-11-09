@@ -3,7 +3,19 @@
 
 package Items;
 
-public abstract class Weapon extends Item {
+public class Weapon extends Item{
 
-    int combatBonus;
+    public Weapon(String name, String description, int cpBonus, int value)
+    {
+        this.cpBonus = cpBonus;
+        this.name = name;
+        this.description = description;
+        this.value = value;
+        this.equipped = false;
+    }
+
+    public void use()
+    {
+        this.equipped = true;
+    }
 }

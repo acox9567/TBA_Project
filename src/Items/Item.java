@@ -5,8 +5,9 @@ package Items;
 
 public abstract class Item {
 
-    String name, description;
-    int value;
+    public String name, description;
+    public int value, cpBonus;
+    public boolean equipped;
 
     public abstract void use();
 }

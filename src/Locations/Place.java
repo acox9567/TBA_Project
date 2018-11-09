@@ -3,6 +3,8 @@
 
 package Locations;
 
+import People.Player;
+
 public abstract class Place {
 
     public boolean isHere;
@@ -11,7 +13,7 @@ public abstract class Place {
     public String type;
     int event;
 
-    public abstract void getEvent();
+    public abstract void getEvent(Player player);
 
     public abstract String toString();
 }

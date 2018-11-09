@@ -47,17 +47,19 @@ public class Runner
 
 		System.out.println(board);
 
-		board.map[player.xLoc][player.yLoc].getEvent();
+		board.map[player.xLoc][player.yLoc].getEvent(player);
 
 		System.out.println("What would you like to do?");
 
 		while(gameOn)
 		{
+			if (player.health <= 0) {
+				System.out.println("You have died.");
+				break;
+			}
 			input = in.nextLine();
 			getResponse(input, player, board);
 		}
-
-		System.out.println(board);
 	}
 
 	private static void updateFog(Board board, Player player)
@@ -80,26 +82,65 @@ public class Runner
 	    board.map[player.xLoc][player.yLoc].wasHere = true;
 	    board.map[player.xLoc][player.yLoc].isHere = false;
 
-	    if(input.equalsIgnoreCase("help")) {
+	    if (input.equalsIgnoreCase("help")) {
             help();
             helpBool = true;
         }
-        if(input.equalsIgnoreCase("north") || input.equalsIgnoreCase("n"))
+        if (input.equalsIgnoreCase("Char info")) {
+			System.out.println(player);
+			helpBool = true;
+		}
+
+		if (input.equalsIgnoreCase("drop 1"))
+			player.inventory[0] = null;
+		if (input.equalsIgnoreCase("drop 2"))
+			player.inventory[1] = null;
+		if (input.equalsIgnoreCase("drop 3"))
+			player.inventory[2] = null;
+		if (input.equalsIgnoreCase("drop 4"))
+			player.inventory[3] = null;
+		if (input.equalsIgnoreCase("drop 5"))
+			player.inventory[4] = null;
+		if (input.equalsIgnoreCase("drop 6"))
+			player.inventory[5] = null;
+		if (input.equalsIgnoreCase("drop 7"))
+			player.inventory[6] = null;
+		if (input.equalsIgnoreCase("drop 8"))
+			player.inventory[7] = null;
+
+		if (player.inventory[0] != null && input.equalsIgnoreCase("use 1"))
+			player.inventory[0].use();
+		if (player.inventory[1] != null && input.equalsIgnoreCase("use 2"))
+			player.inventory[1].use();
+		if (player.inventory[2] != null && input.equalsIgnoreCase("use 3"))
+			player.inventory[2].use();
+		if (player.inventory[3] != null && input.equalsIgnoreCase("use 4"))
+			player.inventory[3].use();
+		if (player.inventory[4] != null && input.equalsIgnoreCase("use 5"))
+			player.inventory[4].use();
+		if (player.inventory[5] != null && input.equalsIgnoreCase("use 6"))
+			player.inventory[5].use();
+		if (player.inventory[6] != null && input.equalsIgnoreCase("use 7"))
+			player.inventory[6].use();
+		if (player.inventory[7] != null && input.equalsIgnoreCase("use 8"))
+			player.inventory[7].use();
+
+        if (input.equalsIgnoreCase("north") || input.equalsIgnoreCase("n"))
             player.xLoc -= 1;
-        if(input.equalsIgnoreCase("south") || input.equalsIgnoreCase("s"))
+        if (input.equalsIgnoreCase("south") || input.equalsIgnoreCase("s"))
             player.xLoc += 1;
-        if(input.equalsIgnoreCase("east") || input.equalsIgnoreCase("e"))
+        if (input.equalsIgnoreCase("east") || input.equalsIgnoreCase("e"))
             player.yLoc += 1;
-        if(input.equalsIgnoreCase("west") || input.equalsIgnoreCase("w"))
+        if (input.equalsIgnoreCase("west") || input.equalsIgnoreCase("w"))
             player.yLoc -= 1;
 
         board.map[player.xLoc][player.yLoc].isHere = true;
         updateFog(board, player);
 
-        if (!helpBool)
-            System.out.println(board);
-
-        board.map[player.xLoc][player.yLoc].getEvent();
+        if (!helpBool) {
+			System.out.println(board);
+			board.map[player.xLoc][player.yLoc].getEvent(player);
+		}
 
         System.out.println("What would you like to do?");
 	}
@@ -112,7 +153,6 @@ public class Runner
         System.out.println("    [M] - mountain");
         System.out.println("    [D] - desert");
         System.out.println("    [F] - forest");
-		System.out.println("    [W] - water");
 		System.out.println("    [C] - city\n");
 
 		System.out.println("Upon entering a new tile an event will occur with varying results.");
@@ -125,6 +165,9 @@ public class Runner
         System.out.println("    East - moves the location of you character one tile east");
         System.out.println("    West - moves the location of you character one tile west\n");
 
-        System.out.println("To see information on your character enter \"char info\"");
+        System.out.println("To see information on your character enter \"char info\".\n");
+
+		System.out.println("You can only hold 8 items at once but only have one equipped.\nTo drop an item enter \"drop x\", x being the number of the item in your inventory which can be found under character info.\nTo equip an item enter \"equip x\", x being the number of the item in your inventory which can be found under character info.");
+
     }
 }
